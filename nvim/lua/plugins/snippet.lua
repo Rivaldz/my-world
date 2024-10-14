@@ -15,8 +15,10 @@ return {
     opts = function(_, opts)
       local cmp = require("cmp")
 
+      -- Tambahkan sumber emoji
       table.insert(opts.sources, { name = "emoji" })
 
+      -- Modifikasi mapping
       opts.mapping = cmp.mapping.preset.insert({
         ["<Tab>"] = cmp.mapping.confirm({ select = true }),
       })

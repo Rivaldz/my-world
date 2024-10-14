@@ -7,7 +7,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "intelephense" }, -- Automatically install PHP language server
+        ensure_installed = { "intelephense", "html" }, -- Automatically install PHP language server
       })
     end,
   },
@@ -27,6 +27,12 @@ return {
             },
           },
         },
+      })
+
+      -- Setup HTML LSP
+      lspconfig.html.setup({
+        -- Additional HTML-specific settings can be added here if needed
+        filetypes = { "html", "blade" }, -- Add 'blade' to HTML filetypes
       })
     end,
   },

@@ -8,3 +8,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ async = true })
   end,
 })
+
+vim.cmd([[
+  autocmd BufRead,BufNewFile *.blade.php set filetype=blade
+]])
