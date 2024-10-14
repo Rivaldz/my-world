@@ -1,5 +1,7 @@
 -- disable whick key
 return {
+
+  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "folke/which-key.nvim", enabled = false },
 
   { "akinsho/bufferline.nvim", enabled = false },
@@ -16,5 +18,9 @@ return {
         },
       },
     },
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
 }
