@@ -29,8 +29,8 @@ keymap.set("n", "<leader>0", ":BufferLast<CR>", opts)
 
 -- Keymaps for telescope
 local builtin = require("telescope.builtin")
-keymap.set("n", "<leader>p", builtin.find_files, { noremap = true, desc = "telescope live grep" })
 keymap.set("n", "<leader>fw", builtin.grep_string, { noremap = true, desc = "Telescope find files under cursor" })
+keymap.set("n", "<leader>p", builtin.find_files, { noremap = true, desc = "telescope live grep" })
 
 -- Keybindings for LSP
 keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
