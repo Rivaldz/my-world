@@ -14,9 +14,8 @@ return {
     dependencies = { "hrsh7th/cmp-emoji" },
     opts = function(_, opts)
       local cmp = require("cmp")
-
       -- Tambahkan sumber emoji
-      table.insert(opts.sources, { name = "emoji" })
+      -- table.insert(opts.sources, { name = "emoji" })
 
       -- Modifikasi mapping
       opts.mapping = cmp.mapping.preset.insert({

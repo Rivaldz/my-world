@@ -30,10 +30,10 @@ return {
       })
 
       -- Setup HTML LSP
-      lspconfig.html.setup({
-        -- Additional HTML-specific settings can be added here if needed
-        filetypes = { "html", "blade" }, -- Add 'blade' to HTML filetypes
-      })
+      -- lspconfig.html.setup({
+      -- Additional HTML-specific settings can be added here if needed
+      --  filetypes = { "html", "blade" }, -- Add 'blade' to HTML filetypes
+      -- })
     end,
   },
 }

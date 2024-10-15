@@ -8,7 +8,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format({ async = true })
   end,
 })
+--vim.cmd([[
 
-vim.cmd([[
-  autocmd BufRead,BufNewFile *.blade.php set filetype=blade
-]])
+--  autocmd BufRead,BufNewFile *.blade.php set filetype=blade
+--]])
+
+-- Create autocmd for BufRead and BufNewFile events
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.blade.php",
+  command = "setlocal filetype=blade.html",
+})
