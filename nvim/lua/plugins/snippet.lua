@@ -1,27 +1,22 @@
---return {
---  {
---    "nvim-cmp",
---    dependencies = { "hrsh7th/cmp-emoji" },
---    opts = function(_, opts)
---      table.insert(opts.sources, { name = "emoji" })
---    end,
---  },
---}
-
 return {
   {
     "nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
     opts = function(_, opts)
       local cmp = require("cmp")
-      -- Tambahkan sumber emoji
-      -- table.insert(opts.sources, { name = "emoji" })
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
-      -- Modifikasi mapping
+      -- Change mapping
       opts.mapping = cmp.mapping.preset.insert({
         ["<Tab>"] = cmp.mapping.confirm({ select = true }),
       })
+
+      -- Add event confirm_done for auto-pairs
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
+
       return opts
     end,
-  },
+  }
 }

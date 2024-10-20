@@ -10,7 +10,7 @@ return {
           files = { "src/parser.c" },
           branch = "main",
         },
-        filetype = "blade",
+        filetype = "blade, html",
       }
 
       -- Memastikan 'blade' ada dalam daftar ensure_installed
