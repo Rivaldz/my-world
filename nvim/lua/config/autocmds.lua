@@ -5,7 +5,10 @@
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.php" },
   callback = function()
-    vim.lsp.buf.format({ async = true })
+    -- Check if the file is not a blade.php file
+    if not vim.fn.expand("%:t"):match("%.blade%.php$") then
+      vim.lsp.buf.format({ async = true })
+    end
   end,
 })
 --vim.cmd([[
