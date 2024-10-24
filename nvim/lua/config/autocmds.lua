@@ -1,6 +1,7 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
+vim.opt.fileformats = {"unix", "dos"}
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.php" },
@@ -19,5 +20,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Create autocmd for BufRead and BufNewFile events
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.blade.php",
-  command = "setlocal filetype=blade.html",
+  command = "setlocal filetype=.blade.html",
 })

@@ -38,3 +38,6 @@ keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- Show hover inf
 keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts) -- Rename symbol
 keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- Go to implementation
 keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- List references
+
+-- This For Auto Format 
+vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
