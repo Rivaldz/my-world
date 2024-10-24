@@ -2,7 +2,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      -- Menambahkan konfigurasi parser untuk Blade
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
       parser_config.blade = {
         install_info = {

@@ -35,7 +35,7 @@ return {
         filetypes = { "html", "blade" }, -- Add 'blade' to HTML filetypes
       })
 
-     -- Setup Lua LSP (lua_ls)
+      -- Setup Lua LSP (lua_ls)
       lspconfig.lua_ls.setup({
         settings = {
           Lua = {
@@ -48,7 +48,7 @@ return {
             },
             workspace = {
               library = vim.api.nvim_get_runtime_file("", true), -- Make LSP aware of Neovim runtime files
-              checkThirdParty = false, -- Disable third-party library suggestions
+              checkThirdParty = false,                           -- Disable third-party library suggestions
             },
             telemetry = {
               enable = false, -- Disable telemetry to keep things light
