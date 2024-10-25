@@ -40,4 +40,4 @@ keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- Go t
 keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- List references
 
 -- This For Auto Format 
-vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })

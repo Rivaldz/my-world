@@ -20,5 +20,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Create autocmd for BufRead and BufNewFile events
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.blade.php",
-  command = "setlocal filetype=.blade.html",
+  command = "setlocal filetype=blade.html",
 })
