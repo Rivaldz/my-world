@@ -32,7 +32,7 @@ return {
       -- Setup HTML LSP
       lspconfig.html.setup({
         --Additional HTML-specific settings can be added here if needed
-        filetypes = { "html", "blade" }, -- Add 'blade' to HTML filetypes
+        filetypes = { "blade" }, -- Add 'blade' to HTML filetypes
       })
 
       -- Setup Lua LSP (lua_ls)
@@ -57,6 +57,35 @@ return {
         --   },
         -- },
       })
+
+      -- Setup Python LSP
+      lspconfig.pyright.setup({
+        -- Tambahkan pengaturan khusus untuk Pyright di sini, jika dibutuhkan
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+        filetypes = { "python" }, -- Menetapkan filetype ke 'python'
+      })
     end,
   },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = {
+          -- Setting untuk Blade Formatter yang mendukung .blade.php dan .html
+          null_ls.builtins.formatting.blade_formatter.with({
+            filetypes = { "blade" }, -- Mendukung Blade dan HTML
+          }),
+        },
+      })
+    end,
+  }
 }
