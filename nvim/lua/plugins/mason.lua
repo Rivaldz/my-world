@@ -29,10 +29,20 @@ return {
         },
       })
 
+      lspconfig.cssls.setup({
+        --Additional HTML-specific settings can be added here if needed
+        filetypes = { "css", "scss"}, -- Add 'blade' to HTML filetypes
+        settings = {
+          css = { validate = true },   -- Aktifkan validasi CSS
+          scss = { validate = true },  -- Aktifkan validasi SCSS
+          less = { validate = true }   -- Opsional: dukungan untuk LESS
+        }
+      })
+
       -- Setup HTML LSP
       lspconfig.html.setup({
         --Additional HTML-specific settings can be added here if needed
-        filetypes = { "blade" }, -- Add 'blade' to HTML filetypes
+        filetypes = { "blade", "html" }, -- Add 'blade' to HTML filetypes
       })
 
       -- Setup Lua LSP (lua_ls)
