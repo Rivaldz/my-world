@@ -218,8 +218,13 @@ alias php5="sudo update-alternatives --set php /usr/bin/php5.6 && sudo update-al
 alias clr="clear"
 alias phpv="php -v"
 alias route="php artisan route:cache"
+alias php74='/usr/bin/php7.4'
+alias off-screen='xset dpms force off'
+
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. /home/rivaldo/.nix-profile/etc/profile.d/nix.sh
