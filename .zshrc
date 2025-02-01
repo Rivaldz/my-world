@@ -34,20 +34,18 @@ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 #/home/rivaldosetyo/.config/composer
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-#Flutter 
-export PATH="$PATH:/Users/rivaldosetyo/development/flutter/bin"
+# export ZSH="$HOME/.oh-my-zsh"
 
 #main path 
-export PATH="$PATH:/bin/bash"
+#export PATH="$PATH:/bin/bash"
 
 #Go
 #export GOROOT=/usr/bin/go
 #export GOPATH=~/work/pms
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
-export PATH=$PATH:$(go env GOBIN)
+
+#export PATH=$PATH:/usr/local/go/bin
+#export PATH=$PATH:$(go env GOPATH)/bin
+#export PATH=$PATH:$(go env GOBIN)
 
 
 # Set name of the theme to load --- if set to "random", it will
@@ -59,11 +57,11 @@ export PATH=$PATH:$(go env GOBIN)
 #export PATH=/usr/local/bin:$PATH
 
 #react native
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH=$PATH:$ANDROID_HOME/emulator
+# export PATH=$PATH:$ANDROID_HOME/tools
+# export PATH=$PATH:$ANDROID_HOME/tools/bin
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 
@@ -183,7 +181,7 @@ source $ZSH/oh-my-zsh.sh
 # source  ~/powerlevel9k/powerlevel9k.zsh-theme
 
 #VERSI PHP XAMPP
-export PATH=/Applications/XAMPP/bin:$PATH
+#export PATH=/Applications/XAMPP/bin:$PATH
 
 #export PATH=/usr/local/etc/php/7.2:$PATH
 
@@ -227,4 +225,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. /home/rivaldo/.nix-profile/etc/profile.d/nix.sh
+#nix path, condition 
+if [ -f /home/rivaldo/.nix-profile/etc/profile.d/nix.sh ]; then
+  . /home/rivaldo/.nix-profile/etc/profile.d/nix.sh
+fi
