@@ -12,7 +12,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 #For phpcs
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # plugins=(
 # 	git 
@@ -21,7 +21,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # )
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #vim bind key
 bindkey -M viins 'jf' vi-cmd-mode
@@ -33,7 +33,7 @@ export PATH="$HOME/npm/bin:$PATH"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

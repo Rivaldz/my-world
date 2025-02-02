@@ -5,7 +5,7 @@
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    
+
     # Enable Oh My Zsh
     oh-my-zsh = {
       enable = true;
@@ -13,9 +13,19 @@
         "git"
         "vi-mode"
       ];
+      #theme = "powerlevel10k/powerlevel10k";
     };
 
-    initExtra = builtins.readFile ~/my-world/.zshrc;
+    #initExtra = builtins.readFile ~/my-world/.zshrc;
+    initExtra = ''
+                  ${builtins.readFile ~/my-world/.zshrc}
+
+                  # Load Powerlevel10k from Nix store
+                  source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+
+                  # Load Powerlevel10k config if available
+                  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+              '';
 
     shellAliases = {
       pas="php artisan serve";
@@ -38,6 +48,6 @@
 
   # Ensure required packages are installed
   home.packages = with pkgs; [
-    zsh-autosuggestions  # Required for OMZ to work with this plugin
+    zsh-powerlevel10k
   ];
 }
