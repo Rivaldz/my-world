@@ -11,6 +11,7 @@
   imports = [
       "${builtins.getEnv "HOME"}/.config/home-manager/appearance/zsh.nix"
       ./appearance/lsp_package.nix
+      ./app/ssh.nix
   ];
 
   home.packages = with pkgs; [
