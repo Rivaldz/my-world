@@ -10,6 +10,7 @@
 
   imports = [
       "${builtins.getEnv "HOME"}/.config/home-manager/appearance/zsh.nix"
+      ./appearance/lsp_package.nix
   ];
 
   home.packages = with pkgs; [
