@@ -18,7 +18,11 @@
          user = "ideplex";
          port = 3311;
          localForwards = [
-           "3326:localhost:3306"  # Local port 3326 → remote localhost:3306
+            {
+             bind.port = 3326;
+             host.address = "localhost";
+             host.port = 3306;
+            }
          ];
          extraOptions = {
            ServerAliveInterval = "60";

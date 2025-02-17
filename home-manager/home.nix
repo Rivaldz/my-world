@@ -12,6 +12,7 @@
       "${builtins.getEnv "HOME"}/.config/home-manager/appearance/zsh.nix"
       ./appearance/lsp_package.nix
       ./app/ssh.nix
+      ./app/php.nix
   ];
 
   home.packages = with pkgs; [
