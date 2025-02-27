@@ -7,7 +7,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "intelephense", "html", "lua_ls" },
+        ensure_installed = { "intelephense", "html", "lua_ls", "gopls" },
       })
     end,
   },
@@ -33,10 +33,10 @@ return {
         --Additional HTML-specific settings can be added here if needed
         filetypes = { "css", "scss" }, -- Add 'blade' to HTML filetypes
         settings = {
-          css = { validate = true },   -- Aktifkan validasi CSS
-          scss = { validate = true },  -- Aktifkan validasi SCSS
-          less = { validate = false }  -- Opsional: dukungan untuk LESS
-        }
+          css = { validate = true }, -- Aktifkan validasi CSS
+          scss = { validate = true }, -- Aktifkan validasi SCSS
+          less = { validate = false }, -- Opsional: dukungan untuk LESS
+        },
       })
 
       -- Setup HTML LSP
@@ -51,7 +51,7 @@ return {
           },
         },
         on_attach = function(client, bufnr)
-          client.server_capabilities.documentFormattingProvider = false      -- Disable formatting
+          client.server_capabilities.documentFormattingProvider = false -- Disable formatting
           client.server_capabilities.documentRangeFormattingProvider = false -- Disable range formatting
         end,
       })
@@ -112,6 +112,26 @@ return {
         -- filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
         filetypes = { "javascript", "typescript" },
       })
+
+      -- Golang LSP (gopls)
+      lspconfig.gopls.setup({
+        cmd = { "gopls" },
+        filetypes = { "go", "gomod", "gowork", "gotmpl" },
+        root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+          },
+        },
+        on_attach = function(client, bufnr)
+          local opts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        end,
+      })
     end,
   },
   {
@@ -131,5 +151,5 @@ return {
         },
       })
     end,
-  }
+  },
 }

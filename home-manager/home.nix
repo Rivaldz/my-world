@@ -13,6 +13,7 @@
       ./appearance/lsp_package.nix
       ./app/ssh.nix
       ./app/php.nix
+      ./app/go.nix
   ];
 
   home.packages = with pkgs; [
