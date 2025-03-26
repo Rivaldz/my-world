@@ -17,8 +17,11 @@
   ];
 
   home.packages = with pkgs; [
-   bat
-   speedtest-cli
+    bat
+    speedtest-cli
+    go-swag
+    go-migrate
+    air
   ];
 
   # Let Home Manager install and manage itself.

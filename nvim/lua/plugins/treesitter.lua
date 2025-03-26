@@ -1,4 +1,15 @@
 return {
+  "nvim-treesitter/nvim-treesitter",
+  opts = {
+    ensure_installed = { "go", "lua", "bash", "json"}, -- Add Go and other necessary languages
+    highlight = {
+      enable = true,                                    -- Enable Treesitter highlighting
+      additional_vim_regex_highlighting = false,        -- Disable Vim regex highlighting
+    },
+    indent = {
+      enable = true, -- Enable Treesitter-based indentation
+    },
+  },
   -- {
   --   "nvim-treesitter/nvim-treesitter",
   --   opts = function(_, opts)
