@@ -33,11 +33,22 @@ keymap.set("n", "<leader>fw", builtin.grep_string, { noremap = true, desc = "Tel
 keymap.set("n", "<leader>p", builtin.find_files, { noremap = true, desc = "telescope live grep" })
 
 -- Keybindings for LSP
-keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) -- Go to definition
-keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts) -- Show hover info
+keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)     -- Go to definition
+keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)           -- Show hover info
 keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts) -- Rename symbol
 keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- Go to implementation
-keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) -- List references
+keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)     -- List references
 
--- This For Auto Format 
+-- This For Auto Format
 vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+
+-- Disable default Tab mapping from Copilot
+vim.g.copilot_no_tab_map = true
+
+-- Use Right Arrow to accept Copilot suggestion
+vim.api.nvim_set_keymap("i", "<Right>", 'copilot#Accept("")', {
+  expr = true,
+  silent = true,
+  noremap = true,
+  replace_keycodes = false,
+})

@@ -73,7 +73,11 @@ return {
       },
 
       keymap = {
-        preset = "enter",
+        preset = "none",
+        ["<C-n>"] = { "select_next" },  -- move to next suggestion
+        ["<C-p>"] = { "select_prev" },  -- move to previous suggestion
+        ["<Down>"] = { "select_next" }, -- optional: arrow down
+        ["<Up>"] = { "select_prev" },   -- optional: arrow up
         ["<Tab>"] = { "select_and_accept" },
         ["<C-y>"] = { "select_and_accept" },
       },
