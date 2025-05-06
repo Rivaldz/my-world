@@ -12,6 +12,9 @@ alias tmux="TERM=screen-256color-bce tmux"
 #For phpcs
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
+source "$HOME/my-world/config.sh"
+export OPENAI_API_KEY="$GPT_KEY"
+
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # plugins=(
