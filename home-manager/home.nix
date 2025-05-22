@@ -22,6 +22,7 @@
     go-swag
     go-migrate
     air
+    fzf
   ];
 
   # Let Home Manager install and manage itself.
