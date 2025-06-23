@@ -23,6 +23,8 @@
     go-migrate
     air
     fzf
+    kubectl
+    stern
   ];
 
   # Let Home Manager install and manage itself.

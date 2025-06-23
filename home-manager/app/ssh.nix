@@ -13,7 +13,7 @@
           ServerAliveInterval = "60";
         };
       };
-       "ssh-idp-tunnel" = {
+      "ssh-idp-tunnel" = {
          hostname = "103.226.139.14";
          user = "ideplex";
          port = 3311;
