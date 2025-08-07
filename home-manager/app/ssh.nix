@@ -52,6 +52,28 @@
           ServerAliveInterval = "60";
         };
       };
+      "ssh-my-vps" = {
+        hostname = "103.226.138.133";
+        user = "rivaldo";
+        extraOptions = {
+          ServerAliveInterval = "60";
+        };
+      };
+      "ssh-stb" = {
+        hostname = "192.168.0.115";
+        user = "rivaldo";
+        port = 2253;
+        extraOptions = {
+          ServerAliveInterval = "60";
+        };
+      };
+      "ssh-gcp" = {
+        hostname = "34.101.207.35";
+        user = "rivaldo";
+        extraOptions = {
+          ServerAliveInterval = "60";
+        };
+      };
     };
   };
 }

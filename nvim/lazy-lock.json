@@ -43,5 +43,6 @@
   "trouble.nvim": { "branch": "main", "commit": "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3" },
   "ts-comments.nvim": { "branch": "main", "commit": "1bd9d0ba1d8b336c3db50692ffd0955fe1bb9f0c" },
   "vim-wakatime": { "branch": "master", "commit": "7b53ba7882ba28b91b571fa4ffb2755378086837" },
-  "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" }
+  "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" },
+  "windsurf.vim": { "branch": "main", "commit": "a8d47ec54fe82df920b2545559f767003e8a7f8d" }
 }
