@@ -42,6 +42,14 @@ keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)     -- List
 -- This For Auto Format
 vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
 
+-- Auto format if save
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.py", "*.js", "*.ts", "*.lua" },
+--   callback = function()
+--     vim.lsp.buf.format()
+--   end,
+-- })
+
 -- Disable default Tab mapping from Copilot
 vim.g.copilot_no_tab_map = true
 

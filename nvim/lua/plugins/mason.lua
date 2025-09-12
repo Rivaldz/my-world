@@ -4,10 +4,20 @@ return {
     config = true, -- Use default config or customize
   },
   {
+    "b0o/schemastore.nvim"
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "intelephense", "html", "lua_ls", "gopls" },
+        ensure_installed = {
+          "intelephense",
+          "html",
+          "lua_ls",
+          "gopls",
+          "pyright",
+          "jsonls",
+        },
       })
     end,
   },
@@ -33,8 +43,8 @@ return {
         --Additional HTML-specific settings can be added here if needed
         filetypes = { "css", "scss" }, -- Add 'blade' to HTML filetypes
         settings = {
-          css = { validate = true }, -- Aktifkan validasi CSS
-          scss = { validate = true }, -- Aktifkan validasi SCSS
+          css = { validate = true },   -- Aktifkan validasi CSS
+          scss = { validate = true },  -- Aktifkan validasi SCSS
           less = { validate = false }, -- Opsional: dukungan untuk LESS
         },
       })
@@ -51,7 +61,7 @@ return {
           },
         },
         on_attach = function(client, bufnr)
-          client.server_capabilities.documentFormattingProvider = false -- Disable formatting
+          client.server_capabilities.documentFormattingProvider = false      -- Disable formatting
           client.server_capabilities.documentRangeFormattingProvider = false -- Disable range formatting
         end,
       })
@@ -93,6 +103,18 @@ return {
         filetypes = { "python" }, -- Menetapkan filetype ke 'python'
       })
 
+      -- JSON LSP
+      lspconfig.jsonls.setup({
+        settings = {
+          json = {
+            validate = { enable = true },                    -- enable validation
+            schemas = require("schemastore").json.schemas(), -- OPTIONAL: if you install `b0o/schemastore.nvim`
+          },
+        },
+        filetypes = { "json", "jsonc" }, -- support json + json with comments
+      })
+
+      -- JavaScript/TypeScript
       lspconfig.tsserver.setup({
         on_attach = function(client, bufnr)
           -- Disable tsserver's formatting capability to use another formatter like prettier
@@ -147,6 +169,22 @@ return {
           }),
           null_ls.builtins.formatting.prettier.with({
             filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+          }),
+
+          -- Python formatters/linters
+          null_ls.builtins.formatting.black.with({
+            filetypes = { "python" },
+          }),
+          null_ls.builtins.formatting.isort.with({
+            filetypes = { "python" },
+          }),
+          -- null_ls.builtins.diagnostics.flake8.with({ --this for remember error on python
+          --   filetypes = { "python" },
+          -- }),
+
+          -- JSON formatter (Prettier)
+          null_ls.builtins.formatting.prettier.with({
+            filetypes = { "json", "jsonc" },
           }),
         },
       })

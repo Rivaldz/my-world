@@ -14,13 +14,12 @@
       ./app/ssh.nix
       ./app/php.nix
       ./app/go.nix
+      ./app/py.nix
   ];
 
   home.packages = with pkgs; [
     bat
     speedtest-cli
-    go-swag
-    go-migrate
     air
     fzf
     kubectl
