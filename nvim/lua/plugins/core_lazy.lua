@@ -30,9 +30,23 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
-    "snacks.nvim",
+    "nvim-mini/mini.icons",
+    lazy = true,
     opts = {
-      scroll = { enabled = false },
+      file = {
+        [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+        ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
+      },
+      filetype = {
+        dotenv = { glyph = "", hl = "MiniIconsYellow" },
+        go = { glyph = "", hl = "MiniIconsAzure" }, -- override Go icon
+      },
     },
-  }
+    init = function()
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
+  },
 }
