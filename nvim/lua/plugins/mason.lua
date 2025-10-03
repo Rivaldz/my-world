@@ -17,6 +17,7 @@ return {
           "gopls",
           "pyright",
           "jsonls",
+          "sqls",
         },
       })
     end,
@@ -154,6 +155,17 @@ return {
           vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         end,
       })
+
+      -- Setup SQL LSP (sqls)
+      lspconfig.sqls.setup({
+        filetypes = { "sql" },
+        on_attach = function(client, bufnr)
+          local opts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        end,
+      })
     end,
   },
   {
@@ -185,6 +197,10 @@ return {
           -- JSON formatter (Prettier)
           null_ls.builtins.formatting.prettier.with({
             filetypes = { "json", "jsonc" },
+          }),
+
+          null_ls.builtins.formatting.sql_formatter.with({
+            filetypes = { "sql" },
           }),
         },
       })
