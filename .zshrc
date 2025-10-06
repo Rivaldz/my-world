@@ -46,3 +46,9 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f /home/rivaldo/.nix-profile/etc/profile.d/nix.sh ]; then
   . /home/rivaldo/.nix-profile/etc/profile.d/nix.sh
 fi
+
+
+# Nix multi-user env
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi

@@ -5,6 +5,16 @@ return {
     event = "InsertEnter",
   },
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
+    build = "make tiktoken",
+    opts = {
+      -- See Configuration section for options
+    },
+  },
+  {
     'Exafunction/windsurf.vim',
     config = function()
       -- Change '<C-g>' here to any keycode you like.

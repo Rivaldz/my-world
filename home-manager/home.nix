@@ -26,6 +26,8 @@
     stern
     google-cloud-sdk
     libxml2
+    go
+    jq
   ];
 
   # Let Home Manager install and manage itself.

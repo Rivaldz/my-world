@@ -1,209 +1,119 @@
 return {
+  { "mason-org/mason.nvim", config = true },
+
+  -- Mason <-> LSP bridge
   {
-    "williamboman/mason.nvim",
-    config = true, -- Use default config or customize
-  },
-  {
-    "b0o/schemastore.nvim"
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup({
+    "mason-org/mason-lspconfig.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "mason-org/mason.nvim",
+      "neovim/nvim-lspconfig",
+      "b0o/schemastore.nvim",
+    },
+    opts = function()
+      local lspconfig = require("lspconfig")
+
+      -- Backward-compatible TS server name (ts_ls on new lspconfig, tsserver on older)
+      local ts_name = lspconfig.ts_ls and "ts_ls" or "tsserver"
+
+      return {
+        automatic_installation = true,
         ensure_installed = {
           "intelephense",
           "html",
+          "cssls",
           "lua_ls",
           "gopls",
           "pyright",
           "jsonls",
-          "sqls",
+          ts_name,
         },
-      })
+
+        -- <---- put handlers here, not via setup_handlers() ---->
+        handlers = {
+          -- default handler for any server without a dedicated one
+          function(server)
+            lspconfig[server].setup({})
+          end,
+
+          -- JSON: with schemastore
+          ["jsonls"] = function()
+            lspconfig.jsonls.setup({
+              settings = {
+                json = {
+                  validate = { enable = true },
+                  schemas = require("schemastore").json.schemas(),
+                },
+              },
+              filetypes = { "json", "jsonc" },
+            })
+          end,
+
+          -- HTML: disable formatting (use conform/prettier)
+          ["html"] = function()
+            lspconfig.html.setup({
+              on_attach = function(client, _)
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+              end,
+            })
+          end,
+
+          -- TS/JS
+          [ts_name] = function()
+            lspconfig[ts_name].setup({
+              on_attach = function(client, bufnr)
+                client.server_capabilities.documentFormattingProvider = false
+                local opts = { noremap = true, silent = true, buffer = bufnr }
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+              end,
+              filetypes = { "javascript", "typescript" },
+            })
+          end,
+        },
+      }
     end,
   },
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      -- Setup LSP servers
-      local lspconfig = require("lspconfig")
 
-      lspconfig.intelephense.setup({
-        -- Configure Intelephense (PHP Language Server)
-        settings = {
-          intelephense = {
-            -- Add any specific settings for Intelephense here
-            files = {
-              maxSize = 5000000, -- Increase file size limit if needed
-            },
-          },
-        },
-      })
-
-      lspconfig.cssls.setup({
-        --Additional HTML-specific settings can be added here if needed
-        filetypes = { "css", "scss" }, -- Add 'blade' to HTML filetypes
-        settings = {
-          css = { validate = true },   -- Aktifkan validasi CSS
-          scss = { validate = true },  -- Aktifkan validasi SCSS
-          less = { validate = false }, -- Opsional: dukungan untuk LESS
-        },
-      })
-
-      -- Setup HTML LSP
-      lspconfig.html.setup({
-        --Additional HTML-specific settings can be added here if needed
-        filetypes = { "blade", "html", "blade.html" }, -- Add 'blade' to HTML filetypes
-        settings = {
-          html = {
-            format = {
-              enable = false, -- Disable HTML formatting
-            },
-          },
-        },
-        on_attach = function(client, bufnr)
-          client.server_capabilities.documentFormattingProvider = false      -- Disable formatting
-          client.server_capabilities.documentRangeFormattingProvider = false -- Disable range formatting
-        end,
-      })
-
-      -- Setup Lua LSP (lua_ls)
-      lspconfig.lua_ls.setup({
-        filetypes = { "lua" }, -- Add 'blade' to HTML filetypes
-        -- settings = {
-        --   Lua = {
-        --     runtime = {
-        --       version = 'LuaJIT', -- Use LuaJIT for Neovim
-        --       path = vim.split(package.path, ";"),
-        --     },
-        --     diagnostics = {
-        --       globals = { "vim" }, -- Recognize the 'vim' global
-        --     },
-        --     workspace = {
-        --       library = vim.api.nvim_get_runtime_file("", true), -- Make LSP aware of Neovim runtime files
-        --       checkThirdParty = false,                           -- Disable third-party library suggestions
-        --     },
-        --     telemetry = {
-        --       enable = false, -- Disable telemetry to keep things light
-        --     },
-        --   },
-        -- },
-      })
-
-      -- Setup Python LSP
-      lspconfig.pyright.setup({
-        -- Tambahkan pengaturan khusus untuk Pyright di sini, jika dibutuhkan
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-            },
-          },
-        },
-        filetypes = { "python" }, -- Menetapkan filetype ke 'python'
-      })
-
-      -- JSON LSP
-      lspconfig.jsonls.setup({
-        settings = {
-          json = {
-            validate = { enable = true },                    -- enable validation
-            schemas = require("schemastore").json.schemas(), -- OPTIONAL: if you install `b0o/schemastore.nvim`
-          },
-        },
-        filetypes = { "json", "jsonc" }, -- support json + json with comments
-      })
-
-      -- JavaScript/TypeScript
-      lspconfig.tsserver.setup({
-        on_attach = function(client, bufnr)
-          -- Disable tsserver's formatting capability to use another formatter like prettier
-          client.server_capabilities.documentFormattingProvider = false
-
-          -- Disable diagnostics for javascriptreact and typescriptreact
-          if client.name == "tsserver" then
-            client.server_capabilities.documentDiagnosticProvider = false
-          end
-
-          -- Keymaps for JavaScript/TypeScript features
-          local opts = { noremap = true, silent = true, buffer = bufnr }
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        end,
-        -- filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        filetypes = { "javascript", "typescript" },
-      })
-
-      -- Golang LSP (gopls)
-      lspconfig.gopls.setup({
-        cmd = { "gopls" },
-        filetypes = { "go", "gomod", "gowork", "gotmpl" },
-        root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
-        settings = {
-          gopls = {
-            analyses = {
-              unusedparams = true,
-            },
-            staticcheck = true,
-          },
-        },
-        on_attach = function(client, bufnr)
-          local opts = { noremap = true, silent = true, buffer = bufnr }
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        end,
-      })
-
-      -- Setup SQL LSP (sqls)
-      lspconfig.sqls.setup({
-        filetypes = { "sql" },
-        on_attach = function(client, bufnr)
-          local opts = { noremap = true, silent = true, buffer = bufnr }
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-        end,
-      })
-    end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = {
-          -- Setting untuk Blade Formatter yang mendukung .blade.php dan .html
-          null_ls.builtins.formatting.blade_formatter.with({
-            filetypes = { "blade", "html" }, -- Mendukung Blade dan HTML
-          }),
-          null_ls.builtins.formatting.prettier.with({
-            filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-          }),
-
-          -- Python formatters/linters
-          null_ls.builtins.formatting.black.with({
-            filetypes = { "python" },
-          }),
-          null_ls.builtins.formatting.isort.with({
-            filetypes = { "python" },
-          }),
-          -- null_ls.builtins.diagnostics.flake8.with({ --this for remember error on python
-          --   filetypes = { "python" },
-          -- }),
-
-          -- JSON formatter (Prettier)
-          null_ls.builtins.formatting.prettier.with({
-            filetypes = { "json", "jsonc" },
-          }),
-
-          null_ls.builtins.formatting.sql_formatter.with({
-            filetypes = { "sql" },
-          }),
-        },
-      })
-    end,
-  },
+  -- {
+  --   "nvimtools/none-ls.nvim",
+  --   config = function()
+  --     local null_ls = require("null-ls")
+  --
+  --     null_ls.setup({
+  --       sources = {
+  --         -- Setting untuk Blade Formatter yang mendukung .blade.php dan .html
+  --         null_ls.builtins.formatting.blade_formatter.with({
+  --           filetypes = { "blade", "html" }, -- Mendukung Blade dan HTML
+  --         }),
+  --         null_ls.builtins.formatting.prettier.with({
+  --           filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  --         }),
+  --
+  --         -- Python formatters/linters
+  --         null_ls.builtins.formatting.black.with({
+  --           filetypes = { "python" },
+  --         }),
+  --         null_ls.builtins.formatting.isort.with({
+  --           filetypes = { "python" },
+  --         }),
+  --
+  --         -- null_ls.builtins.diagnostics.flake8.with({ --this for remember error on python
+  --         --   filetypes = { "python" },
+  --         -- }),
+  --
+  --         -- JSON formatter (Prettier)
+  --         null_ls.builtins.formatting.prettier.with({
+  --           filetypes = { "json", "jsonc" },
+  --         }),
+  --
+  --         -- null_ls.builtins.formatting.sql_formatter.with({
+  --         --   filetypes = { "sql", "up.sql" },
+  --         -- }),
+  --       },
+  --     })
+  --   end,
+  -- },
 }
