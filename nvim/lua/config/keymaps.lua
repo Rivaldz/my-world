@@ -4,7 +4,6 @@ vim.api.nvim_set_keymap("i", "jf", "<Esc>", { noremap = true, silent = true })
 local keymap = vim.keymap
 
 local opts = { noremap = true, silent = true }
-local silentF = { noremap = true, silent = false }
 keymap.set("n", "<leader>e", "<C-w>l", opts)
 keymap.set("n", "<leader>v", "<C-v>", opts)
 keymap.set("n", "<leader>q", "<C-w>h", opts)
@@ -51,12 +50,14 @@ vim.api.nvim_set_keymap('n', '<leader>b', '<cmd>lua vim.lsp.buf.format()<CR>', {
 -- })
 
 -- Disable default Tab mapping from Copilot
-vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_no_tab_map = true
 
 -- Use Right Arrow to accept Copilot suggestion
--- vim.api.nvim_set_keymap("i", "<Right>", 'copilot#Accept("")', {
---   expr = true,
---   silent = true,
---   noremap = true,
---   replace_keycodes = false,
--- })
+vim.api.nvim_set_keymap("i", "<Right>", 'copilot#Accept("")', {
+  expr = true,
+  silent = true,
+  noremap = true,
+  replace_keycodes = false,
+})
+-- CopilotChat shortcut keymap
+keymap.set("n", "<leader>co", ":CopilotChat<CR>", opts)

@@ -1,7 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  branch = "v3.x",
   lazy = false,
+  branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons", -- optional, for icons
@@ -12,8 +12,8 @@ return {
       sources = { "buffers", "git_status" }, -- enable filesystem, buffers, and git status sources
       default_source = "buffers",
       window = {
-        position = "right",                 -- place the Neo-tree window on the right
-        width = 30,                         -- set the width of the window
+        position = "right", -- place the Neo-tree window on the right
+        width = 30,         -- set the width of the window
       },
       filesystem = {
         filtered_items = {
@@ -33,6 +33,14 @@ return {
           ignored   = "◌",
         },
       },
+    })
+    -- enable relative line numbers in Neo-tree
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "neo-tree",
+      callback = function()
+        vim.opt_local.relativenumber = true
+        vim.opt_local.number = true
+      end,
     })
 
     local keymap = vim.keymap

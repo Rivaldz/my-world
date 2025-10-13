@@ -1,11 +1,12 @@
 return {
   {
     "github/copilot.vim",
-    enabled = false,
+    enabled = true,
     event = "InsertEnter",
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = true,
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
@@ -16,6 +17,7 @@ return {
   },
   {
     'Exafunction/windsurf.vim',
+    enabled = false,
     config = function()
       -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set('i', '<Right>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
