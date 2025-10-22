@@ -16,6 +16,9 @@ return {
         width = 30,         -- set the width of the window
       },
       filesystem = {
+        follow_current_file = {
+          enabled = true
+        },
         filtered_items = {
           visible = true,                    -- show hidden files
           hide_dotfiles = false,             -- do not hide dotfiles
