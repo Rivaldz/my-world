@@ -2,6 +2,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+if [ -f "$HOME/.env-global" ]; then
+  export $(grep -v '^#' $HOME/.env-global | xargs)
+fi
+
 # If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 # Otherwise start tmux
@@ -13,7 +17,6 @@ alias tmux="TERM=screen-256color-bce tmux"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 source "$HOME/my-world/config.sh"
-export OPENAI_API_KEY="$GPT_KEY"
 
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -41,6 +44,8 @@ export EDITOR="$VISUAL"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 
 #nix path, condition 
 if [ -f /home/rivaldo/.nix-profile/etc/profile.d/nix.sh ]; then

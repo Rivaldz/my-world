@@ -37,7 +37,7 @@
       off-screen="xset dpms force off";
       hms="home-manager switch";
       hmb="home-manager build";
-      cat="bat";
+      v="nvim";
     };
   };
 

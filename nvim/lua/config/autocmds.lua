@@ -27,3 +27,11 @@ vim.cmd([[highlight Normal guibg=NONE ctermbg=NONE]])
 vim.cmd([[highlight NonText guibg=NONE ctermbg=NONE]])
 vim.cmd([[highlight LineNr guibg=NONE ctermbg=NONE]])
 vim.cmd([[highlight SignColumn guibg=NONE ctermbg=NONE]])
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "sql", "sql.migration" },
+  callback = function()
+    vim.b.omni_func = ""
+    pcall(vim.api.nvim_buf_del_keymap, 0, "i", "<Right>")
+  end,
+})
