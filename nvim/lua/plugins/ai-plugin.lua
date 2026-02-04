@@ -77,50 +77,83 @@ return {
       instructions_file = "avante.md",
 
       -- "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | custom
+      -- REKOMENDASI: Ganti provider ke "openai" untuk pengalaman seperti Cursor IDE
       provider = "openai",
+
       providers = {
+        -- CLAUDE 3.5 SONNET (Versi terbaru, digunakan Cursor IDE)
         claude = {
           endpoint = "https://api.anthropic.com",
-          model = "claude-sonnet-4-5-20250929",
-          -- model = "claude-3-5-haiku-20241022",
-          timeout = 35000, -- Timeout in milliseconds
+          model = "claude-sonnet-4-5-20250929", -- Model terbaru Claude 3.5 Sonnet
+          timeout = 35000,
           extra_request_body = {
             temperature = 0.5,
-            --max_tokens = 25480,
+            max_tokens = 8192, -- Increased for better responses
+          },
+        },
+
+        -- GPT-4o (RECOMMENDED - Model terbaru OpenAI, digunakan Cursor IDE)
+        -- Model yang valid: gpt-4o, gpt-4o-mini, gpt-4-turbo, gpt-4, gpt-3.5-turbo
+        openai = {
+          endpoint = "https://api.openai.com/v1",
+          model = "gpt-5-mini", -- Model OpenAI yang valid
+          timeout = 35000,
+          extra_request_body = {
+            temperature = 0.5,
+            max_completion_tokens = 30384,
+          },
+        },
+
+        gpt_41_mini = {
+          endpoint = "https://api.openai.com/v1",
+          __inherited_from = "openai",
+          model = "gpt-4.1-mini", -- Model OpenAI yang valid
+          timeout = 35000,
+          extra_request_body = {
+            temperature = 0.5,
+            max_tokens = 30384,
+          },
+        },
+
+        gpt_52 = {
+          endpoint = "https://api.openai.com/v1",
+          __inherited_from = "openai",
+          model = "gpt-5.2", -- Model OpenAI yang valid
+          timeout = 35000,
+          extra_request_body = {
+            temperature = 0.5,
+            max_completion_tokens = 30384,
+          },
+        },
+
+        -- DEEPSEEK CODER (Specialized untuk coding, sangat murah/gratis)
+        -- Alternatif bagus jika ingin hemat biaya
+        deepseek = {
+          endpoint = "https://api.deepseek.com/v1",
+          model = "deepseek-coder",
+          timeout = 30000,
+          extra_request_body = {
+            temperature = 0.5,
             max_tokens = 4096,
           },
         },
 
-        -- OPENAI (ACTIVE)
-        openai = {
-          endpoint = "https://api.openai.com/v1",
-          --model = "chatgpt-4o",
-          --model ="gpt-4.1",
-          model = "gpt-4o-mini",
-          timeout = 35000,
+        -- DEEPSEEK CHAT (Model chat general purpose dari DeepSeek)
+        deepseek_chat = {
+          endpoint = "https://api.deepseek.com/v1",
+          model = "deepseek-chat",
+          timeout = 30000,
           extra_request_body = {
-            temperature = 0.5, -- better for coding
-            max_tokens = 4096, -- cukup besar
-            --max_completion_tokens = 2096, -- Use the correct parameter name
-          },
-        },
-        openai1 = {
-          endpoint = "https://api.openai.com/v1",
-          --model = "chatgpt-4o",
-          model = "gpt-4.1",
-          timeout = 35000,
-          extra_request_body = {
-            temperature = 0.5, -- better for coding
-            max_tokens = 4096, -- cukup besar
-            --max_completion_tokens = 2096, -- Use the correct parameter name
+            temperature = 0.5,
+            max_tokens = 4096,
           },
         },
 
-        --Other Model
+        -- MOONSHOT (Kimi - Model China yang bagus)
         moonshot = {
           endpoint = "https://api.moonshot.ai/v1",
           model = "kimi-k2-0711-preview",
-          timeout = 30000, -- Timeout in milliseconds
+          timeout = 30000,
           extra_request_body = {
             temperature = 0.75,
             max_tokens = 32768,

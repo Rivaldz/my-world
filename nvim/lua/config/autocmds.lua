@@ -35,3 +35,10 @@ vim.api.nvim_create_autocmd("FileType", {
     pcall(vim.api.nvim_buf_del_keymap, 0, "i", "<Right>")
   end,
 })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "AvanteWrite",
+  callback = function()
+    vim.cmd("silent! write!")
+  end,
+})

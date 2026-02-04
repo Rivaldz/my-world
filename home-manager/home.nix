@@ -14,9 +14,9 @@
       ./app/ssh.nix
       ./app/php.nix
       ./app/go.nix
-      ./app/py.nix
   ];
-
+  # ./app/py.nix
+  
   home.packages = with pkgs; [
     bat
     speedtest-cli
