@@ -74,6 +74,34 @@
           ServerAliveInterval = "60";
         };
       };
+      "tunnel-temuh" = {
+        hostname = "103.23.199.253";
+        user = "temuh";
+        localForwards = [
+          {
+            bind.port = 5433;
+            host.address = "localhost";
+            host.port = 5432;
+          }
+        ];
+        extraOptions = {
+          ServerAliveInterval = "60";
+        };
+      };
+      "tunnel-gaia" = {
+        hostname = "194.233.77.133";
+        user = "rivaldo";
+        localForwards = [
+          {
+            bind.port = 5433;
+            host.address = "localhost";
+            host.port = 5050;
+          }
+        ];
+        extraOptions = {
+          ServerAliveInterval = "60";
+        };
+      };
     };
   };
 }
