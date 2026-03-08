@@ -6,6 +6,14 @@ if [ -f "$HOME/.env-global" ]; then
   export $(grep -v '^#' $HOME/.env-global | xargs)
 fi
 
+#Claude
+export PATH="$HOME/.local/bin:$PATH"
+
+#Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
 # If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 # Otherwise start tmux

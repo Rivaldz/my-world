@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 
-
 {
   programs.ssh = {
     enable = true;
@@ -30,6 +29,13 @@
       };
       "ssh-gaia1" = {
         hostname = "194.233.77.133";
+        user = "rivaldo";
+        extraOptions = {
+          ServerAliveInterval = "60";
+        };
+      };
+      "ssh-model-gaia" = {
+        hostname = "46.250.228.21";
         user = "rivaldo";
         extraOptions = {
           ServerAliveInterval = "60";

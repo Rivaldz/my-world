@@ -77,8 +77,8 @@ return {
       instructions_file = "avante.md",
 
       -- "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | custom
-      -- REKOMENDASI: Ganti provider ke "openai" untuk pengalaman seperti Cursor IDE
-      provider = "openai",
+      -- REKOMENDASI: Ganti provider ke "glm" (default) untuk model GLM dari Zhipu AI
+      provider = "glm",
 
       providers = {
         -- CLAUDE 3.5 SONNET (Versi terbaru, digunakan Cursor IDE)
@@ -159,6 +159,16 @@ return {
             max_tokens = 32768,
           },
         },
+
+        -- glm = {
+        --   endpoint = "https://open.bigmodel.cn/api/paas/v4",
+        --   model = "GLM-4.7",
+        --   timeout = 35000,
+        --   extra_request_body = {
+        --     temperature = 0.5,
+        --     max_tokens = 8192,
+        --   },
+        -- },
       },
 
       -- Optional: keep default keymaps and behavior
