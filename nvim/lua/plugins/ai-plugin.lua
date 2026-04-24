@@ -160,20 +160,24 @@ return {
           },
         },
 
-        -- glm = {
-        --   endpoint = "https://open.bigmodel.cn/api/paas/v4",
-        --   model = "GLM-4.7",
-        --   timeout = 35000,
-        --   extra_request_body = {
-        --     temperature = 0.5,
-        --     max_tokens = 8192,
-        --   },
-        -- },
+        glm = {
+          __inherited_from = "openai",
+          endpoint = "https://open.bigmodel.cn/api/coding/paas/v4",
+          model = "GLM-4.7",
+          api_key_name = "GLM_API_KEY",
+        },
+
+        glm_air = {
+          __inherited_from = "openai",
+          endpoint = "https://open.bigmodel.cn/api/coding/paas/v4",
+          model = "GLM-4.5-Air",
+          api_key_name = "GLM_API_KEY",
+        },
       },
 
       -- Optional: keep default keymaps and behavior
       behaviour = {
-        auto_suggestions = false, -- Safer off at first
+        auto_suggestions = true, -- Safer off at first
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
@@ -182,17 +186,21 @@ return {
     },
     -- Optional: explicit keymaps similar to LazyVim extra
     keys = {
-      { "<leader>aa", "<cmd>AvanteAsk<CR>",            desc = "Ask Avante" },
-      { "<leader>ac", "<cmd>AvanteChat<CR>",           desc = "Chat with Avante" },
-      { "<leader>ae", "<cmd>AvanteEdit<CR>",           desc = "Edit with Avante" },
-      { "<leader>af", "<cmd>AvanteFocus<CR>",          desc = "Focus Avante" },
-      { "<leader>ah", "<cmd>AvanteHistory<CR>",        desc = "Avante History" },
-      { "<leader>am", "<cmd>AvanteModels<CR>",         desc = "Select Avante Model" },
-      { "<leader>an", "<cmd>AvanteChatNew<CR>",        desc = "New Avante Chat" },
-      { "<leader>ap", "<cmd>AvanteSwitchProvider<CR>", desc = "Switch Avante Provider" },
-      { "<leader>ar", "<cmd>AvanteRefresh<CR>",        desc = "Refresh Avante" },
-      { "<leader>as", "<cmd>AvanteStop<CR>",           desc = "Stop Avante" },
-      { "<leader>at", "<cmd>AvanteToggle<CR>",         desc = "Toggle Avante" },
+      { "<leader>aa", "<cmd>AvanteAsk<CR>",                                            desc = "Ask Avante" },
+      { "<leader>ac", "<cmd>AvanteChat<CR>",                                           desc = "Chat with Avante" },
+      { "<leader>ae", "<cmd>AvanteEdit<CR>",                                           desc = "Edit with Avante" },
+      { "<leader>af", "<cmd>AvanteFocus<CR>",                                          desc = "Focus Avante" },
+      { "<leader>ah", "<cmd>AvanteHistory<CR>",                                        desc = "Avante History" },
+      { "<leader>am", "<cmd>AvanteModels<CR>",                                         desc = "Select Avante Model" },
+      { "<leader>an", "<cmd>AvanteChatNew<CR>",                                        desc = "New Avante Chat" },
+      { "<leader>ap", "<cmd>AvanteSwitchProvider<CR>",                                 desc = "Switch Avante Provider" },
+      { "<leader>ar", "<cmd>AvanteRefresh<CR>",                                        desc = "Refresh Avante" },
+      { "<leader>as", "<cmd>AvanteStop<CR>",                                           desc = "Stop Avante" },
+      { "<leader>at", "<cmd>AvanteToggle<CR>",                                         desc = "Toggle Avante" },
+
+      -- Keymap untuk switch model GLM sudah benar dan akan membaca dari tabel `vendors`
+      { "<leader>g1", function() require("avante.api").switch_provider("glm") end,     desc = "Switch to GLM-4.7 (Main Model)" },
+      { "<leader>g2", function() require("avante.api").switch_provider("glm_air") end, desc = "Switch to GLM-4.5-Air (Second Model)" },
     },
   },
 }
