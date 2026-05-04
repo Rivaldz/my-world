@@ -1,0 +1,12 @@
+[
+  {
+    "key": "n",
+    "command": "list.focusDown",
+    "when": "listFocus && referenceSearch.visible || listFocus && activeViewlet == 'references-view'"
+  },
+  {
+    "key": "p",
+    "command": "list.focusUp",
+    "when": "listFocus && referenceSearch.visible || listFocus && activeViewlet == 'references-view'"
+  }
+]

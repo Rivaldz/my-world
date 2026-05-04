@@ -1,0 +1,193 @@
+{
+  "editor.wordWrap": "off",
+  "workbench.settings.applyToAllProfiles": [],
+  "vim.useSystemClipboard": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "f"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "1"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex1"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "2"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex2"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "3"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex3"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "4"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex4"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "5"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex5"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "6"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex6"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "7"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex7"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "8"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex8"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "9"
+      ],
+      "commands": [
+        "workbench.action.openEditorAtIndex9"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "p"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "sg"
+      ],
+      "commands": [
+        "workbench.action.findInFiles"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "f"
+      ],
+      "commands": [
+        "workbench.files.action.showActiveFileInExplorer"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t"
+      ],
+      "commands": [
+        "workbench.action.toggleSidebarVisibility"
+      ]
+    },
+    {
+      "before": [
+        "n",
+        "c"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "e"
+      ],
+      "commands": [
+        "workbench.action.focusRightGroup"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "a",
+        "t"
+      ],
+      "commands": [
+        "workbench.action.chat.focus"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "q"
+      ],
+      "commands": [
+        "workbench.action.focusActiveEditorGroup"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "d"
+      ],
+      "commands": [
+        "editor.action.revealDefinition"
+      ]
+    },
+    {
+      "before": [
+        "g",
+        "r"
+      ],
+      "commands": [
+        "editor.action.goToReferences"
+      ]
+    }
+  ],
+  "git.autofetch": true,
+  "remote.autoForwardPortsSource": "hybrid"
+}
