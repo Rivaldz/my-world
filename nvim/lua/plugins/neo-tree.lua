@@ -50,6 +50,7 @@ return {
 
     -- Map <leader>t to toggle Neo-tree on the right side
     keymap.set("n", "<leader><Tab>", "<cmd>Neotree toggle right<cr>", { noremap = true, silent = true })
+    keymap.set("n", "<leader>g<Tab>", "<Cmd>Neotree toggle right git_status<CR>", { noremap = true, silent = true })
 
     -- Map <leader>f to focus filesystem in Neo-tree
     -- keymap.set("n", "<leader>f", "<cmd>Neotree focus filesystem right<cr>", { noremap = true, silent = true })

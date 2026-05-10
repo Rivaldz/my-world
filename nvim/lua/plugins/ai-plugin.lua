@@ -177,7 +177,7 @@ return {
 
       -- Optional: keep default keymaps and behavior
       behaviour = {
-        auto_suggestions = true, -- Safer off at first
+        auto_suggestions = false, -- Safer off at first
         auto_set_highlight_group = true,
         auto_set_keymaps = true,
         auto_apply_diff_after_generation = false,
