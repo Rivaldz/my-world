@@ -78,7 +78,7 @@ return {
 
       -- "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | custom
       -- REKOMENDASI: Ganti provider ke "glm" (default) untuk model GLM dari Zhipu AI
-      provider = "glm",
+      provider = "openrouter",
 
       providers = {
         -- CLAUDE 3.5 SONNET (Versi terbaru, digunakan Cursor IDE)
@@ -172,6 +172,13 @@ return {
           endpoint = "https://open.bigmodel.cn/api/coding/paas/v4",
           model = "GLM-4.5-Air",
           api_key_name = "GLM_API_KEY",
+        },
+
+        openrouter = {
+          __inherited_from = 'openai',
+          endpoint = 'https://openrouter.ai/api/v1',
+          model = 'nvidia/nemotron-3-super-120b-a12b:free',
+          api_key_name = 'OPENROUTER_API_KEY',
         },
       },
 
