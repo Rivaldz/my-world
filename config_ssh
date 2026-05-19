@@ -1,0 +1,76 @@
+Host ssh-idp
+    HostName 103.226.139.14
+    User ideplex
+    Port 3311
+    ServerAliveInterval 60
+
+Host ssh-idp-tunnel
+    HostName 103.226.139.14
+    User ideplex
+    Port 3311
+    LocalForward 3326 localhost:3306
+    ServerAliveInterval 60
+
+Host ssh-gaia1
+    HostName 194.233.77.133
+    User rivaldo
+    ServerAliveInterval 60
+
+Host ssh-model-gaia
+    HostName 46.250.228.21
+    User rivaldo
+    ServerAliveInterval 60
+
+Host ssh-acumen
+    HostName 194.163.32.242
+    User u842193292
+    Port 65002
+    ServerAliveInterval 60
+
+Host ssh-niaga
+    HostName 46.17.173.55
+    User u1378024
+    Port 65002
+    IdentityFile ~/ssh_key/niaga.pem
+    ServerAliveInterval 60
+
+Host ssh-my-vps
+    HostName 103.226.138.133
+    User rivaldo
+    ServerAliveInterval 60
+
+Host ssh-stb
+    HostName 192.168.0.7
+    User rivaldo
+    Port 2253
+    ServerAliveInterval 60
+
+Host ssh-gcp
+    HostName 34.101.207.35
+    User rivaldo
+    ServerAliveInterval 60
+
+Host tunnel-temuh
+    HostName 103.23.199.253
+    User temuh
+    LocalForward 5433 localhost:5432
+    ServerAliveInterval 60
+
+Host tunnel-gaia
+    HostName 194.233.77.133
+    User rivaldo
+    LocalForward 5433 localhost:5050
+    ServerAliveInterval 60
+
+Host tunnel-gaia-redis
+    HostName 194.233.77.133
+    User rivaldo
+    LocalForward 6379 localhost:6379
+    ServerAliveInterval 60
+
+Host tunnel-stb
+    HostName 192.168.0.7
+    Port 2253
+    User rivaldo
+    LocalForward 5433 localhost:5434
+    ServerAliveInterval 60
