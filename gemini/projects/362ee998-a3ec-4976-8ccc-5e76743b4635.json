@@ -1,0 +1,14 @@
+{
+  "id": "362ee998-a3ec-4976-8ccc-5e76743b4635",
+  "name": "/home/rivaldo",
+  "projectResources": {
+    "resources": [
+      {
+        "gitFolder": {
+          "folderUri": "file:///home/rivaldo",
+          "allowWrite": true
+        }
+      }
+    ]
+  }
+}
