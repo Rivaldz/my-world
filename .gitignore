@@ -8,3 +8,4 @@ nvim/lazy-lock.json
 *.swp
 *.swo
 .DS_Store
+config.sh
