@@ -1,3 +1,13 @@
 home-manager/result/
 result
 config.sh
+node_modules/
+opencode/node_modules/
+gemini/.migrated
+gemini/projects/
+nvim/lazy-lock.json
+.p10k.zsh
+.tmux-wakatime.sh
+*.swp
+*.swo
+.DS_Store

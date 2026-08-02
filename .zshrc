@@ -13,7 +13,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-
+export PATH=/Users/rivaldosetyo/.opencode/bin:$PATH
 # If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 # Otherwise start tmux
@@ -25,6 +25,9 @@ alias tmux="TERM=screen-256color-bce tmux"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 source "$HOME/my-world/config.sh"
+
+#golang
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 #ZSH_THEME="powerlevel10k/powerlevel10k"
 
