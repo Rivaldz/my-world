@@ -1,8 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "sumopod/qwen3.7-flash-2026-07-15",
-  "small_model": "sumopod/deepseek-v4-flash",
-  "enabled_providers": ["sumopod"],
+  "model": "sumopod/deepseek-v4-flash",
+  "small_model": "sumopod/qwen3.7-flash-2026-07-15",
+  "enabled_providers": [
+    "sumopod"
+  ],
   "agent": {
     "plan": {
       "model": "sumopod/deepseek-v4-pro"
