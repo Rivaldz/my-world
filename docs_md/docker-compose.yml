@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  md-reader:
+    build: .
+    volumes:
+      # Mount the current directory (project root) to /app/data inside the container
+      - .:/app/data

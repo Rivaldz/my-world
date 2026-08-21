@@ -9,3 +9,5 @@ nvim/lazy-lock.json
 *.swo
 .DS_Store
 config.sh
+__pycache__/
+*.pyc
