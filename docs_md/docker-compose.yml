@@ -1,8 +1,9 @@
-
 services:
   md-reader:
     build: .
-    command: tail -f /dev/null
+    command: python read_md.py --host 0.0.0.0 --port 8000
+    ports:
+      - "0.0.0.0:8000:8000" # Expose port from 0.0.0.0
     volumes:
       # Mount the current directory (project root) to /app/data inside the container
       - .:/app/data
