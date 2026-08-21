@@ -2,6 +2,7 @@
 services:
   md-reader:
     build: .
+    command: tail -f /dev/null
     volumes:
       # Mount the current directory (project root) to /app/data inside the container
       - .:/app/data
